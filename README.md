@@ -1,5 +1,12 @@
 # generator-app
 
+## Use application
+- Run the following Make command in the terminal
+    - $ make all
+- clean the project with
+    - $ make clean
+
+
 ## Useful Notes
 - Using command line flags with params: https://gobyexample.com/command-line-flags
 - Time Parsing: https://gobyexample.com/time-formatting-parsing
