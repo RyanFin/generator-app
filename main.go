@@ -1,22 +1,9 @@
 package main
 
 import (
+	"RyanFin/generator-app/pkg"
 	"flag"
-	"fmt"
-	"time"
 )
-
-type Event struct {
-	Type string `json:"type"`
-	Data struct {
-		Viewid        string    `json:"viewId"`
-		Eventdatetime time.Time `json:"eventDateTime"`
-	} `json:"data"`
-}
-
-func generateEvents(numberOfGroups int, batchSize int, interval int, outpudDir string) {
-
-}
 
 func main() {
 
@@ -27,11 +14,7 @@ func main() {
 	outputDirPtr := flag.String("output-directory", ".", "specify output directory")
 	flag.Parse()
 
-	fmt.Println("numbOfGroupsPtr", *numbOfGroupsPtr)
-	fmt.Println("batchSizePtr", *batchSizePtr)
-	fmt.Println("intervalPtr", *intervalPtr)
-	fmt.Println("outputDirPtr", *outputDirPtr)
-
 	// Run generate Events JSON
+	pkg.GenerateEvents(*numbOfGroupsPtr, *batchSizePtr, *intervalPtr, *outputDirPtr)
 
 }
