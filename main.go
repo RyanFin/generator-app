@@ -17,6 +17,6 @@ func main() {
 	// Run generate Events JSON
 	jsonString := pkg.GenerateEvents(*numbOfGroupsPtr, *batchSizePtr, *intervalPtr)
 
-	pkg.GenerateOutputFile(jsonString, outputDirPtr)
+	pkg.GenerateOutputFile(jsonString, *outputDirPtr)
 
 }

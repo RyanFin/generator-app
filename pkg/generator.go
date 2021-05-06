@@ -28,10 +28,6 @@ func GenerateEvents(numberOfGroups int, batchSize int, interval int) string {
 
 	var jsonStr string
 
-	fmt.Println("numbOfGroupsPtr", numberOfGroups)
-	fmt.Println("batchSizePtr", batchSize)
-	fmt.Println("intervalPtr", interval)
-
 	i := 0
 
 	for i < batchSize {
@@ -88,12 +84,15 @@ func GenerateEventType() string {
 	return ret
 }
 
-func GenerateOutputFile(jsonString string, outputDirPtr *string) {
+func GenerateOutputFile(jsonString string, outputDirPtr string) {
 
 	// Generate timestamp string
 	timestmp := time.Now().Format("2006-01-02-15-04-05")
+
 	// Generate file name
 	fileName := string(timestmp + ".json")
+
+	// Write to file
 	err := ioutil.WriteFile(fileName, []byte(jsonString), 0644)
 	if err != nil {
 		fmt.Errorf("Error writing file: %s", err)
