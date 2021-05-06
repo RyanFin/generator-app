@@ -15,6 +15,8 @@ func main() {
 	flag.Parse()
 
 	// Run generate Events JSON
-	pkg.GenerateEvents(*numbOfGroupsPtr, *batchSizePtr, *intervalPtr, *outputDirPtr)
+	jsonString := pkg.GenerateEvents(*numbOfGroupsPtr, *batchSizePtr, *intervalPtr)
+
+	pkg.GenerateOutputFile(jsonString, *outputDirPtr)
 
 }
