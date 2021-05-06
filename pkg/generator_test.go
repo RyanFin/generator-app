@@ -53,3 +53,7 @@ func TestGenerateRandomEventFloat(t *testing.T) {
 		t.Error("float not within  specified range 0.0 - 1.0")
 	}
 }
+
+func TestGenerateOutputFile(t *testing.T) {
+	GenerateOutputFile("{\"type\":\"Viewed\",\"data\":{\"viewId\":\"05400e6a-3cf1-4464-aa6e-36ca72ad0047\",\"eventDateTime\":\"2021-05-06T10:47:14+01:00\"}}", "Desktop/")
+}
