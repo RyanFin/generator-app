@@ -37,7 +37,10 @@ func GenerateEvents(numberOfGroups int, batchSize int, interval int) string {
 		// Create a unique uuid for this event
 		viewId := uuid.NewV4()
 
-		eventTypeStr := GenerateEventType()
+		randEvent := GenerateRandomEventFloat()
+
+		eventTypeStr := GenerateEventType(randEvent)
+
 		event.loadEventData(eventTypeStr, viewId.String(), time.Now().Format(time.RFC3339))
 		i++
 
@@ -54,20 +57,9 @@ func GenerateEvents(numberOfGroups int, batchSize int, interval int) string {
 
 }
 
-func GenerateEventType() string {
+func GenerateEventType(randEvent float64) string {
 
 	var ret string
-
-	// generate a random event
-	rand.Seed(time.Now().UnixNano()) // randomise with the use of a seed
-	res := make([]float64, 5)
-	min := 0.0
-	max := 1.0
-
-	for i := range res {
-		res[i] = min + rand.Float64()*(max-min)
-	}
-	randEvent := rand.Float64()
 
 	if randEvent < 0.85 {
 		ret = "Viewed"
@@ -100,4 +92,21 @@ func GenerateOutputFile(jsonString string, outputDirPtr string) {
 
 	// Save json at target location as a json file
 	fmt.Println(outputDirPtr)
+}
+
+func GenerateRandomEventFloat() float64 {
+	var randEvent float64
+	// generate a random event
+	rand.Seed(time.Now().UnixNano()) // randomise with the use of a seed
+	res := make([]float64, 5)
+	min := 0.0
+	max := 1.0
+
+	for i := range res {
+		res[i] = min + rand.Float64()*(max-min)
+	}
+
+	randEvent = rand.Float64()
+
+	return randEvent
 }
