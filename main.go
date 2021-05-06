@@ -3,6 +3,7 @@ package main
 import (
 	"RyanFin/generator-app/pkg"
 	"flag"
+	"fmt"
 )
 
 func main() {
@@ -15,6 +16,11 @@ func main() {
 	flag.Parse()
 
 	// Run generate Events JSON
-	pkg.GenerateEvents(*numbOfGroupsPtr, *batchSizePtr, *intervalPtr, *outputDirPtr)
+	jsonString := pkg.GenerateEvents(*numbOfGroupsPtr, *batchSizePtr, *intervalPtr)
+
+	fmt.Println(jsonString)
+
+	// Save json at target location as a json file
+	fmt.Println(outputDirPtr)
 
 }

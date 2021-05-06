@@ -1,6 +1,7 @@
 package pkg
 
 import (
+	"encoding/json"
 	"fmt"
 	"math/rand"
 	"time"
@@ -22,23 +23,37 @@ func (e *Event) loadEventData(typeString string, viewId string, eventDateTime st
 	e.Data.Eventdatetime = eventDateTime
 }
 
-func GenerateEvents(numberOfGroups int, batchSize int, interval int, outpudDir string) {
+func GenerateEvents(numberOfGroups int, batchSize int, interval int) string {
+
+	var jsonStr string
+
 	fmt.Println("numbOfGroupsPtr", numberOfGroups)
 	fmt.Println("batchSizePtr", batchSize)
 	fmt.Println("intervalPtr", interval)
-	fmt.Println("outputDirPtr", outpudDir)
 
-	// Create an event object
-	var event Event
+	i := 0
 
-	// Create a unique uuid for this event
-	viewId := uuid.NewV4()
+	for i < batchSize {
+		// Create an event object
+		var event Event
 
-	eventTypeStr := generateEventType()
+		// Create a unique uuid for this event
+		viewId := uuid.NewV4()
 
-	event.loadEventData(eventTypeStr, viewId.String(), time.Now().Format(time.RFC3339))
+		eventTypeStr := generateEventType()
+		event.loadEventData(eventTypeStr, viewId.String(), time.Now().Format(time.RFC3339))
+		i++
 
-	fmt.Println(event)
+		// marshall event into json format
+		j, err := json.Marshal(event)
+		if err != nil {
+			fmt.Errorf("Error Marshalling JSON: %s", err)
+		}
+		// append json string to return variable
+		jsonStr = jsonStr + string(j) + ("\n")
+	}
+
+	return jsonStr
 
 }
 
