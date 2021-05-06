@@ -3,6 +3,7 @@ package pkg
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"math/rand"
 	"time"
 
@@ -40,7 +41,7 @@ func GenerateEvents(numberOfGroups int, batchSize int, interval int) string {
 		// Create a unique uuid for this event
 		viewId := uuid.NewV4()
 
-		eventTypeStr := generateEventType()
+		eventTypeStr := GenerateEventType()
 		event.loadEventData(eventTypeStr, viewId.String(), time.Now().Format(time.RFC3339))
 		i++
 
@@ -57,7 +58,7 @@ func GenerateEvents(numberOfGroups int, batchSize int, interval int) string {
 
 }
 
-func generateEventType() string {
+func GenerateEventType() string {
 
 	var ret string
 
@@ -71,7 +72,6 @@ func generateEventType() string {
 		res[i] = min + rand.Float64()*(max-min)
 	}
 	randEvent := rand.Float64()
-	fmt.Println(randEvent)
 
 	if randEvent < 0.85 {
 		ret = "Viewed"
@@ -86,4 +86,19 @@ func generateEventType() string {
 	}
 
 	return ret
+}
+
+func GenerateOutputFile(jsonString string, outputDirPtr *string) {
+
+	// Generate timestamp string
+	timestmp := time.Now().Format("2006-01-02-15-04-05")
+	// Generate file name
+	fileName := string(timestmp + ".json")
+	err := ioutil.WriteFile(fileName, []byte(jsonString), 0644)
+	if err != nil {
+		fmt.Errorf("Error writing file: %s", err)
+	}
+
+	// Save json at target location as a json file
+	fmt.Println(outputDirPtr)
 }

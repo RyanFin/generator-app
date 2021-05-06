@@ -8,4 +8,6 @@ build:
 
 clean:
 	@echo "Cleaning up..."
+	rm *.json
 	rm generator-app
+	

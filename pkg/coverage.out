@@ -1,0 +1,16 @@
+mode: set
+RyanFin/generator-app/pkg/generator.go:20.87,24.2 3 0
+RyanFin/generator-app/pkg/generator.go:26.77,36.20 6 0
+RyanFin/generator-app/pkg/generator.go:56.2,56.16 1 0
+RyanFin/generator-app/pkg/generator.go:36.20,49.17 7 0
+RyanFin/generator-app/pkg/generator.go:53.3,53.41 1 0
+RyanFin/generator-app/pkg/generator.go:49.17,51.4 1 0
+RyanFin/generator-app/pkg/generator.go:60.33,70.21 6 1
+RyanFin/generator-app/pkg/generator.go:73.2,76.22 3 1
+RyanFin/generator-app/pkg/generator.go:80.2,80.22 1 1
+RyanFin/generator-app/pkg/generator.go:84.2,84.22 1 1
+RyanFin/generator-app/pkg/generator.go:88.2,88.12 1 1
+RyanFin/generator-app/pkg/generator.go:70.21,72.3 1 1
+RyanFin/generator-app/pkg/generator.go:76.22,78.3 1 1
+RyanFin/generator-app/pkg/generator.go:80.22,82.3 1 0
+RyanFin/generator-app/pkg/generator.go:84.22,86.3 1 0
